@@ -5,7 +5,7 @@ class TokenResponse extends JsonObject {
   ///
   /// This is returned unless the response_type value used is `id_token`.
   String? get accessToken => this['access_token'];
-
+  String? get idToken => this['id_token'];
   /// OAuth 2.0 Token Type value
   ///
   /// The value MUST be Bearer or another token_type value that the Client has
@@ -21,7 +21,7 @@ class TokenResponse extends JsonObject {
       : expiresAt!.difference(clock.now());
 
   /// ID Token
-  IdToken get idToken =>
+  IdToken get idTokenObj =>
       getTyped('id_token', factory: (v) => IdToken.unverified(v))!;
 
   DateTime? get expiresAt => getTyped('expires_at');
